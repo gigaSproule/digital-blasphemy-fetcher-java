@@ -1,0 +1,11 @@
+[versions]
+assertj = "3.27.3"
+commons-cli = "1.9.0"
+digital-blasphemy-client = "0.0.2-SNAPSHOT"
+spotbugs = "4.9.3"
+
+[libraries]
+assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "spotbugs" }
+commons-cli = { module = "commons-cli:commons-cli", version.ref = "commons-cli" }
+digital-blasphemy-client = { module = "com.benjaminsproule:digital-blasphemy-client", version.ref = "digital-blasphemy-client" }
