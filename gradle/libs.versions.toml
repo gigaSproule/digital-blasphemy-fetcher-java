@@ -1,5 +1,5 @@
 [versions]
-assertj = "3.27.3"
+assertj = "3.27.4"
 commons-cli = "1.10.0"
 digital-blasphemy-client = "0.0.2-SNAPSHOT"
 spotbugs = "4.9.3"
