@@ -2,7 +2,7 @@
 assertj = "3.27.4"
 commons-cli = "1.10.0"
 digital-blasphemy-client = "0.0.2-SNAPSHOT"
-spotbugs = "4.9.4"
+spotbugs = "4.9.5"
 
 [libraries]
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
