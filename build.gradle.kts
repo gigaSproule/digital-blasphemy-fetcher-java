@@ -5,7 +5,7 @@ plugins {
     application
     jacoco
     checkstyle
-    id("com.github.spotbugs") version "6.4.2"
+    id("com.github.spotbugs") version "6.4.3"
     id("info.solidsoft.pitest") version "1.19.0-rc.2"
 }
 
