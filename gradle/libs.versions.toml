@@ -1,6 +1,6 @@
 [versions]
 assertj = "3.27.6"
-commons-cli = "1.10.0"
+commons-cli = "1.11.0"
 digital-blasphemy-client = "0.0.2-SNAPSHOT"
 spotbugs = "4.9.8"
 
