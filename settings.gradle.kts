@@ -1,6 +1,6 @@
 pluginManagement {
     plugins {
-        id("com.github.spotbugs") version "6.4.12"
+        id("com.github.spotbugs") version "6.5.0"
         id("info.solidsoft.pitest") version "1.19.0"
         kotlin("jvm") version "2.3.20"
     }
