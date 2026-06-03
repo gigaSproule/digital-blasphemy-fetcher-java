@@ -57,3 +57,5 @@ gradle-app.setting
 .classpath
 
 out/
+
+target/
