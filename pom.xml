@@ -30,7 +30,7 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
 
-        <digital-blasphemy-client.version>0.0.2-SNAPSHOT</digital-blasphemy-client.version>
+        <digital-blasphemy-client.version>0.0.2</digital-blasphemy-client.version>
         <commons-cli.version>1.11.0</commons-cli.version>
         <assertj.version>3.27.7</assertj.version>
         <spotbugs.version>4.9.8</spotbugs.version>
