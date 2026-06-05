@@ -1,0 +1,79 @@
+name: 'Run main workflow'
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Run check
+        run: ./mvnw -B clean verify
+
+  release:
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 30
+    needs:
+      - build
+    if: ${{ github.ref_type == 'tag' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Set version for release
+        run: |
+          ./mvnw versions:set -DnewVersion="${{ github.ref_name }}"
+      - name: Commit release version
+        run: |
+          git add pom.xml
+          git commit -m "chore: set version to ${{ github.ref_name }}"
+      - name: Package
+        run: ./mvnw -B package -DskipTests
+      - name: Set version for next release
+        id: next-release-version
+        run: |
+          NEXT_VERSION=$(echo ${{ github.ref_name }} | awk -F. -v OFS=. '{$NF += 1 ; print}')-SNAPSHOT
+          ./mvnw versions:set -DnewVersion="${NEXT_VERSION}"
+          echo "next-version=${NEXT_VERSION}" >> $GITHUB_OUTPUT
+      - name: Commit next release version
+        run: |
+          git add pom.xml
+          git commit -m "chore: set version to ${{ steps.next-release-version.outputs.next-version }}"
+          git push origin HEAD:main
+      - name: Create Release
+        uses: ncipollo/release-action@v1.21.0
+        with:
+          artifacts: 'target/digital-blasphemy-fetcher*.zip'
+          generateReleaseNotes: true
+          makeLatest: true
