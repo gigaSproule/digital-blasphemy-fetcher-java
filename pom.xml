@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.benjaminsproule</groupId>
     <artifactId>digital-blasphemy-fetcher</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>jlink</packaging>
     <name>Digital Blasphemy Fetcher</name>
     <description>A tool to fetch wallpapers from the Digital Blasphemy API</description>
     <url>https://github.com/gigaSproule/digital-blasphemy-fetcher-java/</url>
@@ -35,6 +35,11 @@
         <assertj.version>3.27.7</assertj.version>
         <spotbugs.version>4.9.8</spotbugs.version>
         <junit.version>5.14.4</junit.version>
+
+        <width>1920</width>
+        <height>1080</height>
+        <type>single</type>
+        <path/>
     </properties>
 
     <dependencies>
@@ -199,6 +204,64 @@
                                 <version>1.2.3</version>
                             </dependency>
                         </dependencies>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.benjaminsproule.digitalblasphemy.fetcher.Main</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.2.1</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mainClass>com.benjaminsproule.digitalblasphemy.fetcher.Main</mainClass>
+                            <arguments>
+                                <argument>--w</argument>
+                                <argument>${width}</argument>
+                                <argument>--h</argument>
+                                <argument>${height}</argument>
+                                <argument>--type</argument>
+                                <argument>${type}</argument>
+                                <argument>--path</argument>
+                                <argument>${path}</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jlink-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <noManPages>true</noManPages>
+                            <noHeaderFiles>true</noHeaderFiles>
+                            <stripDebug>true</stripDebug>
+                            <compress>2</compress>
+                            <verbose>true</verbose>
+                            <launcher>
+                                ${project.name}=com.benjaminsproule.digitalblasphemy.fetcher/com.benjaminsproule.digitalblasphemy.fetcher.Main
+                            </launcher>
+                            <!-- TODO: Remove need to specify Main class -->
+                            <!--                            <launcher>${project.name}=com.benjaminsproule.digitalblasphemy.fetcher</launcher>-->
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

@@ -1,4 +1,4 @@
-package com.benjaminsproule;
+package com.benjaminsproule.digitalblasphemy.fetcher;
 
 import com.benjaminsproule.digitalblasphemy.client.DigitalBlasphemyClient;
 import com.benjaminsproule.digitalblasphemy.client.model.*;

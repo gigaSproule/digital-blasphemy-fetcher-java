@@ -1,4 +1,4 @@
-package com.benjaminsproule;
+package com.benjaminsproule.digitalblasphemy.fetcher;
 
 import com.benjaminsproule.digitalblasphemy.client.model.WallpaperType;
 import org.apache.commons.cli.*;
@@ -40,10 +40,10 @@ public class Cli {
         Options options = getOptions();
         try {
             CommandLine cmd = parser.parse(options, args);
-            int width = ((Number) cmd.getParsedOptionValue("width")).intValue();
-            int height = ((Number) cmd.getParsedOptionValue("height")).intValue();
-            WallpaperType type = (WallpaperType) cmd.getParsedOptionValue("type");
-            Path path = (Path) cmd.getParsedOptionValue("path");
+            int width = cmd.getParsedOptionValue("width");
+            int height = cmd.getParsedOptionValue("height");
+            WallpaperType type = cmd.getParsedOptionValue("type");
+            Path path = cmd.getParsedOptionValue("path");
             return new Cli(width, height, type, path);
         } catch (ParseException e) {
             formatter.printHelp("digital-blasphemy-fetcher", options);
@@ -75,6 +75,7 @@ public class Cli {
                 .desc("Required type of wallpapers. Valid values are " + Arrays.toString(WallpaperType.values()))
                 .required()
                 .type(WallpaperType.class)
+                .converter(WallpaperType::of)
                 .get());
 
         opts.addOption(Option.builder("p")
