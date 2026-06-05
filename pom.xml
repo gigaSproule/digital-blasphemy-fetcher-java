@@ -5,7 +5,7 @@
 
     <groupId>com.benjaminsproule</groupId>
     <artifactId>digital-blasphemy-fetcher</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jlink</packaging>
     <name>Digital Blasphemy Fetcher</name>
     <description>A tool to fetch wallpapers from the Digital Blasphemy API</description>
