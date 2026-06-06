@@ -3,6 +3,9 @@ package com.benjaminsproule.digitalblasphemy.fetcher;
 import com.benjaminsproule.digitalblasphemy.client.DigitalBlasphemyClient;
 import com.benjaminsproule.digitalblasphemy.client.model.*;
 import com.benjaminsproule.digitalblasphemy.client.model.Wallpaper.Resolutions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,6 +15,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 public class Main {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         String apiKey = getApiKey();
         Cli cli = Cli.parse(args);
@@ -89,7 +94,7 @@ public class Main {
     }
 
     private static CompletableFuture<Void> fetchWallpaper(Cli cli, DigitalBlasphemyClient client, Wallpaper wallpaper,
-            boolean plusUser) throws IOException {
+                                                          boolean plusUser) throws IOException {
         Resolutions.Resolution resolution = getResolution(cli, wallpaper);
         if (resolution == null) {
             return CompletableFuture.completedFuture(null);
@@ -128,12 +133,8 @@ public class Main {
     }
 
     private static CompletableFuture<Void> downloadWallpaper(Cli cli, DigitalBlasphemyClient client,
-            Wallpaper wallpaper, Path expectedPath, boolean plusUser) {
-        // println!(
-        // "Need to download {} to {}",
-        // &wallpaper.name,
-        // expected_wallpaper_path.display()
-        // );
+                                                             Wallpaper wallpaper, Path expectedPath, boolean plusUser) {
+        LOGGER.info("Need to download {} to {}", wallpaper.name(), expectedPath);
         try {
             return client.downloadWallpaper(
                     expectedPath,
@@ -146,12 +147,11 @@ public class Main {
                             .build());
         } catch (ResponseException e) {
             if (e.getCode() == 404) {
-                // info!(
-                // "Unable to download wallpaper {}. This is most likely because the API has
-                // returned a valid resolution,
-                // even though it doesn't actually have it.",
-                // &wallpaper.name
-                // );
+                LOGGER.info(
+                        "Unable to download wallpaper {}. This is most likely because the API has returned a valid " +
+                                "resolution, even though it doesn't actually have it.",
+                        wallpaper.name()
+                );
                 return CompletableFuture.completedFuture(null);
             } else {
                 throw e;
