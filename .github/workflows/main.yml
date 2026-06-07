@@ -106,6 +106,6 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.21.0
         with:
-          artifacts: 'target/digital-blasphemy-fetcher*.zip,target/digital-blasphemy-fetcher*-small.jar'
+          artifacts: 'target/digital-blasphemy-fetcher*.zip,target/digital-blasphemy-fetcher*-bin.jar'
           generateReleaseNotes: true
           makeLatest: true
