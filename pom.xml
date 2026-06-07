@@ -252,7 +252,7 @@
                             <compress>2</compress>
                             <verbose>true</verbose>
                             <launcher>
-                                ${project.name}=com.benjaminsproule.digitalblasphemy.fetcher/com.benjaminsproule.digitalblasphemy.fetcher.Main
+                                ${project.artifactId}=com.benjaminsproule.digitalblasphemy.fetcher/com.benjaminsproule.digitalblasphemy.fetcher.Main
                             </launcher>
                         </configuration>
                     </plugin>
