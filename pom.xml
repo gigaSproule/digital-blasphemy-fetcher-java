@@ -298,7 +298,7 @@
                         </executions>
                         <configuration>
                             <injar>${project.build.finalName}-jar-with-dependencies.jar</injar>
-                            <outjar>${project.build.finalName}-small.jar</outjar>
+                            <outjar>${project.build.finalName}-bin.jar</outjar>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <libs>
                                 <lib>${java.home}/jmods</lib>
