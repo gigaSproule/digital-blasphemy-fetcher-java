@@ -32,6 +32,26 @@ jobs:
       - name: Run check
         run: ./mvnw -B clean verify
 
+  release-dry-run:
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 30
+    needs:
+      - build
+    if: ${{ github.ref_type != 'tag' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup java
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Package executable jar
+        run: ./mvnw -B package -DskipTests
+      - name: Package custom JRE
+        run: ./mvnw -B jlink:jlink
+
   release:
     runs-on: "ubuntu-latest"
     timeout-minutes: 30
@@ -68,8 +88,10 @@ jobs:
         run: |
           git add pom.xml
           git commit -m "chore: set version to ${{ github.ref_name }}"
-      - name: Package
+      - name: Package executable jar
         run: ./mvnw -B package -DskipTests
+      - name: Package custom JRE
+        run: ./mvnw -B jlink:jlink
       - name: Set version for next release
         id: next-release-version
         run: |
@@ -84,6 +106,6 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.21.0
         with:
-          artifacts: 'target/digital-blasphemy-fetcher*.zip'
+          artifacts: 'target/digital-blasphemy-fetcher*.zip,target/digital-blasphemy-fetcher*-small.jar'
           generateReleaseNotes: true
           makeLatest: true
