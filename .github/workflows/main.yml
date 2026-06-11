@@ -70,6 +70,8 @@ jobs:
       - name: Set version for release
         run: |
           ./mvnw versions:set -DnewVersion="${{ github.ref_name }}"
+      - name: Package executable jar
+        run: ./mvnw -B package -DskipTests
       - name: Package custom JRE
         run: ./mvnw -B jlink:jlink
       - name: Rename custom JRE
@@ -78,7 +80,9 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: digital-blasphemy-fetcher-linux
-          path: target\digital-blasphemy-fetcher-linux-${{ github.ref_name }}.zip
+          path: |
+            target\digital-blasphemy-fetcher-${{ github.ref_name }}-bin.jar
+            target\digital-blasphemy-fetcher-linux-${{ github.ref_name }}.zip
 
   package-windows:
     runs-on: "windows-latest"
@@ -98,6 +102,8 @@ jobs:
       - name: Set version for release
         run: |
           ./mvnw versions:set -DnewVersion="${{ github.ref_name }}"
+      - name: Package executable jar
+        run: ./mvnw -B package -DskipTests
       - name: Package custom JRE
         run: ./mvnw -B jlink:jlink
       - name: Rename custom JRE
@@ -126,6 +132,8 @@ jobs:
       - name: Set version for release
         run: |
           ./mvnw versions:set -DnewVersion="${{ github.ref_name }}"
+      - name: Package executable jar
+        run: ./mvnw -B package -DskipTests
       - name: Package custom JRE
         run: ./mvnw -B jlink:jlink
       - name: Rename custom JRE
@@ -174,8 +182,6 @@ jobs:
         run: |
           git add pom.xml
           git commit -m "chore: set version to ${{ github.ref_name }}"
-      - name: Package executable jar
-        run: ./mvnw -B package -DskipTests
       - name: Set version for next release
         id: next-release-version
         run: |
