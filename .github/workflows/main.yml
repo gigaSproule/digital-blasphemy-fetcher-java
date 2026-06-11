@@ -91,6 +91,8 @@ jobs:
       - verify
     if: ${{ github.ref_type == 'tag' }}
     steps:
+      - name: Set autocrlf to false
+        run: git config --global core.autocrlf false
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup java
