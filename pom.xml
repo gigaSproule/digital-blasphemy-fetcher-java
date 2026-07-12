@@ -37,7 +37,7 @@
         <slf4j.version>2.0.18</slf4j.version>
         <assertj.version>3.27.7</assertj.version>
         <spotbugs.version>4.10.2</spotbugs.version>
-        <junit.version>6.1.1</junit.version>
+        <junit.version>6.1.2</junit.version>
 
         <width>1920</width>
         <height>1080</height>
