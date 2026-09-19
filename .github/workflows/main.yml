@@ -27,6 +27,7 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
+          java-package: 'jdk+jmods'
           java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Run check
@@ -45,6 +46,7 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
+          java-package: 'jdk+jmods'
           java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Package executable jar
@@ -65,6 +67,7 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
+          java-package: 'jdk+jmods'
           java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
@@ -99,6 +102,7 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
+          java-package: 'jdk+jmods'
           java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
@@ -129,6 +133,7 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
+          java-package: 'jdk+jmods'
           java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
@@ -175,6 +180,7 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
+          java-package: 'jdk+jmods'
           java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
