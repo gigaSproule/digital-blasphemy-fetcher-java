@@ -27,7 +27,8 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
-          java-version: "21.0.12+101.0.LTS"
+          java-package: 'jdk+jmods'
+          java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Run check
         run: ./mvnw -B clean verify
@@ -45,7 +46,8 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
-          java-version: "21.0.12+101.0.LTS"
+          java-package: 'jdk+jmods'
+          java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Package executable jar
         run: ./mvnw -B package -DskipTests
@@ -65,7 +67,8 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
-          java-version: "21.0.12+101.0.LTS"
+          java-package: 'jdk+jmods'
+          java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
@@ -99,7 +102,8 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
-          java-version: "21.0.12+101.0.LTS"
+          java-package: 'jdk+jmods'
+          java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
@@ -129,7 +133,8 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
-          java-version: "21.0.12+101.0.LTS"
+          java-package: 'jdk+jmods'
+          java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
@@ -175,7 +180,8 @@ jobs:
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6
         with:
           distribution: "temurin"
-          java-version: "21.0.12+101.0.LTS"
+          java-package: 'jdk+jmods'
+          java-version: "25.0.4+101.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
