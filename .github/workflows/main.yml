@@ -28,7 +28,7 @@ jobs:
         with:
           distribution: "temurin"
           java-package: 'jdk+jmods'
-          java-version: "25.0.4+101.0.LTS"
+          java-version: "25.0.5+8.0.LTS"
           cache: "maven"
       - name: Run check
         run: ./mvnw -B clean verify
@@ -47,7 +47,7 @@ jobs:
         with:
           distribution: "temurin"
           java-package: 'jdk+jmods'
-          java-version: "25.0.4+101.0.LTS"
+          java-version: "25.0.5+8.0.LTS"
           cache: "maven"
       - name: Package executable jar
         run: ./mvnw -B package -DskipTests
@@ -68,7 +68,7 @@ jobs:
         with:
           distribution: "temurin"
           java-package: 'jdk+jmods'
-          java-version: "25.0.4+101.0.LTS"
+          java-version: "25.0.5+8.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
@@ -103,7 +103,7 @@ jobs:
         with:
           distribution: "temurin"
           java-package: 'jdk+jmods'
-          java-version: "25.0.4+101.0.LTS"
+          java-version: "25.0.5+8.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
@@ -134,7 +134,7 @@ jobs:
         with:
           distribution: "temurin"
           java-package: 'jdk+jmods'
-          java-version: "25.0.4+101.0.LTS"
+          java-version: "25.0.5+8.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
@@ -181,7 +181,7 @@ jobs:
         with:
           distribution: "temurin"
           java-package: 'jdk+jmods'
-          java-version: "25.0.4+101.0.LTS"
+          java-version: "25.0.5+8.0.LTS"
           cache: "maven"
       - name: Set version for release
         run: |
